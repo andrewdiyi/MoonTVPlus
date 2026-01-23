@@ -336,6 +336,7 @@ interface SiteConfig {
   PansouApiUrl?: string;
   PansouUsername?: string;
   PansouPassword?: string;
+  PansouKeywordBlocklist?: string;
   EnableComments: boolean;
   EnableRegistration?: boolean;
   RegistrationRequireTurnstile?: boolean;
@@ -6679,6 +6680,7 @@ const SiteConfigComponent = ({
     PansouApiUrl: '',
     PansouUsername: '',
     PansouPassword: '',
+    PansouKeywordBlocklist: '',
     EnableComments: false,
     EnableRegistration: false,
     RegistrationRequireTurnstile: false,
@@ -6769,6 +6771,7 @@ const SiteConfigComponent = ({
         PansouApiUrl: config.SiteConfig.PansouApiUrl || '',
         PansouUsername: config.SiteConfig.PansouUsername || '',
         PansouPassword: config.SiteConfig.PansouPassword || '',
+        PansouKeywordBlocklist: config.SiteConfig.PansouKeywordBlocklist || '',
         EnableComments: config.SiteConfig.EnableComments || false,
       });
     }
@@ -7506,6 +7509,28 @@ const SiteConfigComponent = ({
           />
           <p className='mt-1 text-xs text-gray-500 dark:text-gray-400'>
             配置账号密码后，系统会自动登录并缓存 Token
+          </p>
+        </div>
+
+        {/* 关键词屏蔽 */}
+        <div>
+          <label className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2'>
+            关键词屏蔽（可选）
+          </label>
+          <input
+            type='text'
+            placeholder='多个关键词用中文或英文逗号分隔'
+            value={siteSettings.PansouKeywordBlocklist}
+            onChange={(e) =>
+              setSiteSettings((prev) => ({
+                ...prev,
+                PansouKeywordBlocklist: e.target.value,
+              }))
+            }
+            className='w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-green-500 focus:border-transparent'
+          />
+          <p className='mt-1 text-xs text-gray-500 dark:text-gray-400'>
+            设置后会过滤包含这些关键词的搜索结果
           </p>
         </div>
       </div>

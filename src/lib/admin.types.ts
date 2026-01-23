@@ -29,6 +29,7 @@ export interface AdminConfig {
     PansouApiUrl?: string;
     PansouUsername?: string;
     PansouPassword?: string;
+    PansouKeywordBlocklist?: string;
     // 评论功能开关
     EnableComments: boolean;
     // 自定义去广告代码

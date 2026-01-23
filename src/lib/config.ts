@@ -251,6 +251,11 @@ async function getInitConfig(configFile: string, subConfig: {
       TMDBApiKey: process.env.TMDB_API_KEY || '',
       TMDBProxy: process.env.TMDB_PROXY || '',
       TMDBReverseProxy: process.env.TMDB_REVERSE_PROXY || '',
+      // Pansou配置
+      PansouApiUrl: '',
+      PansouUsername: '',
+      PansouPassword: '',
+      PansouKeywordBlocklist: '',
       // 评论功能开关
       EnableComments: false,
     },
@@ -446,6 +451,10 @@ export function configSelfCheck(adminConfig: AdminConfig): AdminConfig {
       FluidSearch: true,
       DanmakuApiBase: 'http://localhost:9321',
       DanmakuApiToken: '87654321',
+      PansouApiUrl: '',
+      PansouUsername: '',
+      PansouPassword: '',
+      PansouKeywordBlocklist: '',
       EnableComments: false,
     };
   }
@@ -459,6 +468,9 @@ export function configSelfCheck(adminConfig: AdminConfig): AdminConfig {
   // 确保评论开关存在
   if (adminConfig.SiteConfig.EnableComments === undefined) {
     adminConfig.SiteConfig.EnableComments = false;
+  }
+  if (adminConfig.SiteConfig.PansouKeywordBlocklist === undefined) {
+    adminConfig.SiteConfig.PansouKeywordBlocklist = '';
   }
   if (!adminConfig.UserConfig) {
     adminConfig.UserConfig = { Users: [] };
